@@ -1,4 +1,4 @@
-"""Functions for drawing the Game of Life interface."""
+"""Функции для отрисовки интерфейса игры «Жизнь»."""
 
 import pygame
 
@@ -22,7 +22,7 @@ def draw_game(
     is_running: bool,
     steps_per_second: int,
 ) -> None:
-    """Draw the grid, live cells, simulation status, and controls."""
+    """Нарисовать поле, живые клетки, состояние симуляции и подсказки управления."""
     screen.fill(BACKGROUND_COLOR)
     for row, cells in enumerate(game.cells):
         for column, is_alive in enumerate(cells):

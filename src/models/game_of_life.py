@@ -1,4 +1,4 @@
-"""Conway's Game of Life rules and toroidal grid model."""
+"""Правила игры «Жизнь» Конвея и модель поля с тороидальной геометрией."""
 
 from __future__ import annotations
 
@@ -18,32 +18,32 @@ TEXT_COLOR = (235, 238, 245)
 
 
 class GameOfLife:
-    """Store and update a cellular automaton on a toroidal grid."""
+    """Хранит и обновляет клеточный автомат на тороидальном поле."""
 
     def __init__(self, width: int, height: int) -> None:
-        """Create an empty grid with the given dimensions."""
+        """Создать пустое поле заданного размера."""
         self.width = width
         self.height = height
         self.cells = [[False for _ in range(width)] for _ in range(height)]
 
     def toggle_cell(self, column: int, row: int, alive: bool) -> None:
-        """Set a cell's state when its coordinates are inside the grid."""
+        """Задать состояние клетки, если её координаты находятся внутри поля."""
         if 0 <= column < self.width and 0 <= row < self.height:
             self.cells[row][column] = alive
 
     def randomize(self, probability: float = 0.22) -> None:
-        """Randomly populate the grid using the given live-cell probability."""
+        """Случайно заполнить поле с заданной вероятностью появления живой клетки."""
         self.cells = [
             [random.random() < probability for _ in range(self.width)]
             for _ in range(self.height)
         ]
 
     def clear(self) -> None:
-        """Set every cell to dead."""
+        """Сделать все клетки мёртвыми."""
         self.cells = [[False for _ in range(self.width)] for _ in range(self.height)]
 
     def count_neighbors(self, column: int, row: int) -> int:
-        """Count neighbors, wrapping row and column indexes at the edges."""
+        """Подсчитать соседей, переходя к противоположному краю у границ поля."""
         return sum(
             self.cells[(row + row_offset) % self.height][
                 (column + column_offset) % self.width
@@ -54,7 +54,7 @@ class GameOfLife:
         )
 
     def step(self) -> None:
-        """Advance the simulation by one generation using Conway's rules."""
+        """Выполнить один шаг симуляции по правилам Конвея."""
         next_cells = [[False for _ in range(self.width)] for _ in range(self.height)]
         for row in range(self.height):
             for column in range(self.width):
@@ -65,5 +65,5 @@ class GameOfLife:
         self.cells = next_cells
 
     def alive_count(self) -> int:
-        """Return the number of live cells."""
+        """Вернуть количество живых клеток."""
         return sum(sum(row) for row in self.cells)

@@ -1,4 +1,4 @@
-"""Pygame application and event loop for Conway's Game of Life."""
+"""Приложение Pygame и цикл событий для игры «Жизнь» Конвея."""
 
 import pygame
 
@@ -14,10 +14,10 @@ from src.renderers.renderer import draw_game
 
 
 class App:
-    """Own the window, user input, and simulation lifecycle."""
+    """Управляет окном, вводом пользователя и ходом симуляции."""
 
     def __init__(self) -> None:
-        """Initialize the window and a randomized simulation."""
+        """Создать окно и симуляцию со случайным начальным состоянием."""
         pygame.init()
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption("Игра Жизнь")
@@ -30,7 +30,7 @@ class App:
         self.last_step_time = 0
 
     def handle_event(self, event: pygame.event.Event) -> bool:
-        """Handle one Pygame event; return False when the app should quit."""
+        """Обработать событие Pygame; вернуть False, если приложение нужно закрыть."""
         if event.type == pygame.QUIT:
             return False
         if event.type == pygame.KEYDOWN:
@@ -50,7 +50,7 @@ class App:
         return True
 
     def handle_mouse(self) -> None:
-        """Apply held mouse buttons to cells within the grid area."""
+        """Изменить клетки поля при удержании кнопок мыши."""
         mouse_x, mouse_y = pygame.mouse.get_pos()
         buttons = pygame.mouse.get_pressed()
         if mouse_y < GRID_HEIGHT * CELL_SIZE:
@@ -62,7 +62,7 @@ class App:
                 self.game.toggle_cell(column, row, False)
 
     def run(self) -> None:
-        """Run the main event, update, and drawing loop."""
+        """Запустить главный цикл обработки событий, обновления и отрисовки."""
         application_running = True
         while application_running:
             for event in pygame.event.get():

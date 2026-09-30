@@ -1,10 +1,10 @@
-"""Start the Game of Life application."""
+"""Запуск приложения «Игра Жизнь»."""
 
 from src.app import App
 
 
 def main() -> None:
-    """Create and run the application."""
+    """Создать и запустить приложение."""
     App().run()
 
 
